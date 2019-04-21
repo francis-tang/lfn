@@ -370,7 +370,7 @@ import java.util.Vector;
  *
  * This makes it easy to generate simple configuration files for an application.
  *
- * @author John E. Lloyd, Fall 2004
+ * 
  */
 public class CliParser {
 	Vector matchList;
@@ -1825,8 +1825,8 @@ public class CliParser {
 	 *
 	 * <p>
 	 * In the event of an erroneous argument, the method throws an
-	 * {@link CliParseException.ArgParseException ArgParseException} with an appropriate
-	 * error message. This error message can also be retrieved using
+	 * {@link CliParseException.ArgParseException ArgParseException} with an
+	 * appropriate error message. This error message can also be retrieved using
 	 * {@link #getErrorMessage getErrorMessage}.
 	 *
 	 * <p>
