@@ -13,7 +13,7 @@ import one.inve.rpc.localfullnode.GossipObj;
  * 
  * Copyright © CHXX Co.,Ltd. All rights reserved.
  * 
- * @Description: TODO
+ * @Description: comparing lfn event height distance (gossip object)
  * @author: Francis.Deng
  * @date: Apr 21, 2019 6:04:08 AM
  * @version: V1.0

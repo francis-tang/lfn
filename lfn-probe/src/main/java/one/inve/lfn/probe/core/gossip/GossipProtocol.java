@@ -22,6 +22,16 @@ import one.inve.rpc.localfullnode.Event;
 import one.inve.rpc.localfullnode.GossipObj;
 import one.inve.service.SnapshotDbService;
 
+/**
+ * 
+ * 
+ * Copyright © CHXX Co.,Ltd. All rights reserved.
+ * 
+ * @Description: comparing lfn event height distance (gossip object)
+ * @author: Francis.Deng
+ * @date: Apr 21, 2019 6:29:27 AM
+ * @version: V1.0
+ */
 public class GossipProtocol {
 
 	private final ConcurrentHashMap<Integer, AtomicLongArray> lastSeq = new ConcurrentHashMap<>();
