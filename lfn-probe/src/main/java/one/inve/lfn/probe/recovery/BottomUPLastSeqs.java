@@ -89,22 +89,21 @@ public class BottomUPLastSeqs {
 					EventBody otherParent = getEvent(dbId, me.getShardId(), me.getOtherId(), me.getOtherSeq());
 
 					if (selfParent == null && me.getCreatorSeq() - 1L != -1L) {
-						System.err.println(">>>>>> failed to instatiate add Event because selfParent (id,seq) of ("
-								+ me.getCreatorId() + ", " + (me.getCreatorSeq()) + ") is missing");
+						System.err.println("a failure because selfParent (id,seq) of (" + me.getCreatorId() + ", "
+								+ (me.getCreatorSeq()) + ") is missing");
 						lastSeq = lastSeq.add(BigInteger.ONE);
 						continue;
 					}
 					if (otherParent == null && me.getOtherId() != -1L && me.getOtherSeq() != -1L) {
-						System.err.println(">>>>>> failed to instatiate add Event because otherParent (id, seq) of ("
-								+ me.getOtherId() + ", " + me.getOtherSeq() + ") is missing ");
+						System.err.println("a failure because otherParent (id, seq) of (" + me.getOtherId() + ", "
+								+ me.getOtherSeq() + ") is missing ");
 						lastSeq = lastSeq.add(BigInteger.ONE);
 						continue;
 					}
 					// 如果创建时间比自己的父节点还早，则仍然不合法
 					if (selfParent != null && !me.getTimeCreated().isAfter(selfParent.getTimeCreated())) {
-						System.err.println(
-								">>>>>> failed to instatiate add Event because (id, seq) of (" + me.getCreatorId()
-										+ ", " + me.getCreatorSeq() + ")  timecreated is before than its parent ");
+						System.err.println("a failure because (id, seq) of (" + me.getCreatorId() + ", "
+								+ me.getCreatorSeq() + ")  timecreated is before than its parent ");
 						lastSeq = lastSeq.add(BigInteger.ONE);
 						continue;
 					}
@@ -143,6 +142,7 @@ public class BottomUPLastSeqs {
 
 	}
 
+	// retrieve from product environment(10)
 	private static PublicKey[][] getPublicKeys() {
 		PublicKey[][] publicKeys = null;
 
