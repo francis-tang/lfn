@@ -23,6 +23,10 @@ import one.inve.util.HnKeyUtils;
  * 
  * @Description: Quickly fix lastSeq loss issue.There is a good performance if
  *               you have initialLastSeqs in place.
+ * 
+ *               <p/>
+ * 
+ *               be carefully that last seqs might impact new event creation.
  * @author: Francis.Deng
  * @date: Apr 22, 2019 2:16:25 AM
  * @version: V1.0
@@ -89,21 +93,24 @@ public class BottomUPLastSeqs {
 					EventBody otherParent = getEvent(dbId, me.getShardId(), me.getOtherId(), me.getOtherSeq());
 
 					if (selfParent == null && me.getCreatorSeq() - 1L != -1L) {
-						System.err.println("a failure because selfParent (id,seq) of (" + me.getCreatorId() + ", "
-								+ (me.getCreatorSeq()) + ") is missing");
+
+						System.err.println(String.format("SelfParent(%s,%s) is missing for (%s,%s)", me.getCreatorId(),
+								me.getCreatorSeq() - 1, me.getCreatorId(), me.getCreatorSeq()));
 						lastSeq = lastSeq.add(BigInteger.ONE);
 						continue;
 					}
 					if (otherParent == null && me.getOtherId() != -1L && me.getOtherSeq() != -1L) {
-						System.err.println("a failure because otherParent (id, seq) of (" + me.getOtherId() + ", "
-								+ me.getOtherSeq() + ") is missing ");
+
+						System.err.println(String.format("OtherParent(%s,%s) is missing for (%s,%s)", me.getOtherId(),
+								me.getOtherSeq(), me.getCreatorId(), me.getCreatorSeq()));
 						lastSeq = lastSeq.add(BigInteger.ONE);
 						continue;
 					}
 					// 如果创建时间比自己的父节点还早，则仍然不合法
 					if (selfParent != null && !me.getTimeCreated().isAfter(selfParent.getTimeCreated())) {
-						System.err.println("a failure because (id, seq) of (" + me.getCreatorId() + ", "
-								+ me.getCreatorSeq() + ")  timecreated is before than its parent ");
+
+						System.err.println(String.format("SelfParent(%s,%s) turned younger than me(%s,%s)",
+								me.getCreatorId(), me.getCreatorSeq() - 1, me.getCreatorId(), me.getCreatorSeq()));
 						lastSeq = lastSeq.add(BigInteger.ONE);
 						continue;
 					}
@@ -117,8 +124,9 @@ public class BottomUPLastSeqs {
 
 					PublicKey publicKey = publicKeys[me.getShardId()][(int) me.getCreatorId()];
 					if (!Cryptos.verifySignature(selfHash, me.getSignature(), publicKey)) {
-						System.err.println(me.getCreatorSeq() + " Cryptos.verifySignature(<" + selfHash + ">,<"
-								+ me.getSignature() + ">) failure ");
+
+						System.err.println(String.format("(%s,%s) failed in the Cryptos.verifySignature process",
+								me.getCreatorId(), me.getCreatorSeq()));
 						lastSeq = lastSeq.add(BigInteger.ONE);
 						continue;
 					} else {
