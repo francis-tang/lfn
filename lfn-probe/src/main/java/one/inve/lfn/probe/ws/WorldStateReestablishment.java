@@ -28,7 +28,25 @@ public class WorldStateReestablishment {
 			RepositoryProvider.getTrack(dbId);
 
 			WorldStateParadigm wsp = new WorldStateParadigm();
-			Map<String, BigInteger> report = wsp.reestablish(dbId, false);
+			// making sure one.inve.contract.MVM::WorldStateService::setBalance function in
+			// place:
+			// @formatter:off
+			/**
+				public static void setBalance(String dbId, String address, BigInteger value) {
+					Repository track = getTrack(dbId);
+			
+					// 讀取餘額
+					BigInteger balance = track.getBalance(address.getBytes());
+					// 餘額清零
+					track.addBalance(address.getBytes(), balance.negate());
+					// 直接設置餘額
+					track.addBalance(address.getBytes(), value);
+					// force it to commit root
+					((INVERepositoryRoot) track).commit(dbId);
+				}
+			 */
+			//@formatter:on
+			Map<String, BigInteger> report = wsp.reestablish(dbId, true);
 
 			report.forEach((k, v) -> {
 
