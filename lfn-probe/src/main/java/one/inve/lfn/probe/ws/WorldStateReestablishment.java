@@ -54,6 +54,7 @@ public class WorldStateReestablishment {
 					WorldStateService.setBalance(dbId, k, v);
 				} else {
 					System.err.println("found a negative number [" + k + "," + v + "],which is not allowed");
+					WorldStateService.setBalance(dbId, k, BigInteger.ZERO);// eliminate minus number case.
 				}
 
 			});
