@@ -65,45 +65,45 @@ public class WorldStateReestablishment {
 		}
 	}
 
-	public static void main1(String[] args) {
-		final String dbId;
-		final String command;
-
-		if (args != null && args.length >= 2) {
-			command = args[0];
-			dbId = args[1];
-
-			if (command.equals("genReport")) {
-				WorldStateParadigm wsp = new WorldStateParadigm();
-
-				Map<String, BigInteger> report = wsp.reestablish(dbId, false);
-
-				System.out.println(report);
-			} else if (command.equals("reestablishWorldState")) {
-				RepositoryProvider.getTrack(dbId);
-
-				WorldStateParadigm wsp = new WorldStateParadigm();
-				Map<String, BigInteger> report = wsp.reestablish(dbId, false);
-
-				report.forEach((k, v) -> {
-
-					if (v.doubleValue() > 0) {
-						WorldStateService.setBalance(dbId, k, v);
-					} else {
-						System.err.println("found a negative number [" + k + "," + v + "],which is not allowed");
-					}
-
-				});
-			}
-		} else {
-			System.out.println(
-					"java -cp ./lfn-probe-0.5.0.jar:./localfullnode-2.0.0.jar one.inve.lfn.probe.ws.WorldState [command] [dbId]");
-			System.out.println("command:");
-			System.out.println("	genReport - generate a report about address - final value");
-			System.out.println("	reestablishWorldState - reestablish the whole World State");
-			System.out.println("dbId: database id like \"0_1\"");
-		}
-	}
+//	public static void main1(String[] args) {
+//		final String dbId;
+//		final String command;
+//
+//		if (args != null && args.length >= 2) {
+//			command = args[0];
+//			dbId = args[1];
+//
+//			if (command.equals("genReport")) {
+//				WorldStateParadigm wsp = new WorldStateParadigm();
+//
+//				Map<String, BigInteger> report = wsp.reestablish(dbId, false);
+//
+//				System.out.println(report);
+//			} else if (command.equals("reestablishWorldState")) {
+//				RepositoryProvider.getTrack(dbId);
+//
+//				WorldStateParadigm wsp = new WorldStateParadigm();
+//				Map<String, BigInteger> report = wsp.reestablish(dbId, false);
+//
+//				report.forEach((k, v) -> {
+//
+//					if (v.doubleValue() > 0) {
+//						WorldStateService.setBalance(dbId, k, v);
+//					} else {
+//						System.err.println("found a negative number [" + k + "," + v + "],which is not allowed");
+//					}
+//
+//				});
+//			}
+//		} else {
+//			System.out.println(
+//					"java -cp ./lfn-probe-0.5.0.jar:./localfullnode-2.0.0.jar one.inve.lfn.probe.ws.WorldState [command] [dbId]");
+//			System.out.println("command:");
+//			System.out.println("	genReport - generate a report about address - final value");
+//			System.out.println("	reestablishWorldState - reestablish the whole World State");
+//			System.out.println("dbId: database id like \"0_1\"");
+//		}
+//	}
 
 	public static void main0(String[] args) {
 		WorldStateParadigm wsp = new WorldStateParadigm();
