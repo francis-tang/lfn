@@ -1,0 +1,68 @@
+
+# ILifecycle impl
+loopClassImpl = "one.inve.localfullnode2.lc.FormalEventMessageLoop"
+
+
+[sharding]
+# $shardId_$creatorId_$shardCount_$nValue_$myaddress
+info = "0_3_1_4_192.168.207.129:35791" 
+
+
+
+[[localfullnodes]]
+pubkey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCEVPUEsXu6nf2CymIn3/AnCpAOURwys0A4Y3j3yJ5TPy9JlFEiYiKp37spHYwCPXyhg2b7nxxoB/Mwr3qoed6pjJ95FZ3eczYxP5jnBNE0ZnTm2ZzGCvo0SimgCGKeK8KQ7u1qGIWlfExA6mg2pf50lp+dBnTQqDskv6lYr7zXmwIDAQAB"
+status = 4
+shard = "0"
+index = "0"
+address = "address0"
+
+[[localfullnodes]]
+pubkey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCy3Ok+WOYiFvV1iTgeAdp5QI9mL7SVLCVcF5dSKXb6kBWpefWxLe4epk5kBosk3ddju0JIvKSkn2UrOd6b1F1Ditu+hptfkAJpnOd6DJIyQ3ev9YTdjYruAE+YRdsV/DOWN1wMJ6iIkzu+ERdRdyZnLyWqH4XfEfjDMuX2RqM7owIDAQAB"
+status = 4
+shard = "0"
+index = "1"
+address = "address1"
+
+[[localfullnodes]]
+pubkey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXsbhYmzRnrV7zKv2mjE7pcv5GyRGf8bCOBXZ1HwYqYq+1yWGlP9/HNlxr80PR1BMHTVl+QhwvBq+TRbHIgB5Qb3Q+2byLycNnUiF+AQ16bWH8XjYH4WXXoXN8OoZ/Dca1qoC6CYDoQQDVfljJf6JnTmotU5Ij69jbkfzybbEiQwIDAQAB"
+status = 4
+shard = "0"
+index = "2"
+address = "address2"
+
+[[localfullnodes]]
+pubkey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCKUj9kEkBNuEjdjf1gXhgFOC+ZuOHWASgE1sg/gsNGLjarajKWFKUuhCKTb+bEE+N5/GoKQPWmdureLFw8kLnftBYgS7nwuH5cW8AE/l+bscbvIFn8lcE6QbQnwww3UDyby6pQ8exPuGsj1OAVzmh1+FJhVmeoFo5Bnnyd+HUqzwIDAQAB"
+status = 4
+shard = "0"
+index = "3"
+address = "address3"
+
+
+
+[[members]]
+level = "2"
+rpcPort = "35792"
+index = "0"
+address = "192.168.207.129:35791"
+id = "0"
+
+[[members]]
+level = "2"
+rpcPort = "35795"
+index = "1"
+address = "192.168.207.129:35794"
+id = "1"
+
+[[members]]
+level = "2"
+rpcPort = "35798"
+index = "2"
+address = "192.168.207.129:35797"
+id = "2"
+
+[[members]]
+level = "2"
+rpcPort = "35892"
+index = "3"
+address = "192.168.207.129:35891"
+id = "3"
