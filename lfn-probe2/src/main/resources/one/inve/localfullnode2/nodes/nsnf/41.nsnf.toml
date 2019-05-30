@@ -5,7 +5,7 @@ loopClassImpl = "one.inve.localfullnode2.lc.FormalEventMessageLoop"
 
 [sharding]
 # $shardId_$creatorId_$shardCount_$nValue_$myaddress
-info = "0_3_1_4_192.168.207.129:35794" 
+info = "0_1_1_4_192.168.207.129:35794" 
 
 
 
